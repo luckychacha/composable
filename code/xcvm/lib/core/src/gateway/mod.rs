@@ -211,7 +211,7 @@ mod tests {
 		generate_asset_id,
 		prelude::*,
 		shared::*,
-		Instruction,
+		Instruction, generate_network_prefixed_id,
 	};
 
 	#[test]
@@ -483,7 +483,7 @@ mod tests {
 		let pica_on_osmosis = generate_asset_id(3.into(), 0, 1);
 		let osmo_on_osmosis = generate_asset_id(3.into(), 0, 2);
 		let osmo_on_picasso = generate_asset_id(2.into(), 0, 2);
-		let pica_osmo_on_osmosis = generate_asset_id(3.into(), 100, 1);
+		let pica_osmo_on_osmosis = generate_network_prefixed_id(3.into(), 100, 1);
 
 		let program = ExecuteMsg::ExecuteProgram {
 			execute_program: ExecuteProgramMsg {
@@ -497,25 +497,24 @@ mod tests {
 						program: XcProgram {
 							tag: b"spawn_with_asset".to_vec(),
 							instructions: [
-								XcInstruction::Exchange { 
-									id: pica_osmo_on_osmosis.into(), 
-									give: (), 
-									want: () 
-								}
-								
-								
-							// 	XcInstruction::Transfer {
-							// 	to: crate::Destination::Account(
-							// 		Binary::from_base64("AB9vNpqXOevUvR5+JDnlljDbHhw=")
-							// 			.unwrap()
-							// 			.into(),
-							// 	),
-							// 	assets: crate::Funds(vec![(
-							// 		pica_on_osmosis,
-							// 		1_000_000_000u128.into(),
-							// 	)]),
-							// }
-							
+								XcInstruction::Exchange {
+									id: pica_osmo_on_osmosis.into(),
+									give: crate::Funds(vec![(
+										pica_on_osmosis,
+										1_000_000_000u128.into(),
+									)]),
+									want: crate::Funds(vec![(
+										osmo_on_osmosis,
+										1_000u128.into(),
+									)]),
+								}, 
+								XcInstruction::Spawn 
+								{ 
+									network: (),
+									salt: (), 
+									assets: (), 
+									program: () 
+								},								
 							]
 							.into(),
 						},
