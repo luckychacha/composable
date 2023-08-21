@@ -208,10 +208,10 @@ impl Gateway {
 mod tests {
 	use crate::{
 		gateway::{ExecuteMsg, ExecuteProgramMsg},
-		generate_asset_id,
+		generate_asset_id, generate_network_prefixed_id,
 		prelude::*,
 		shared::*,
-		Instruction, generate_network_prefixed_id,
+		Instruction,
 	};
 
 	#[test]
@@ -389,7 +389,7 @@ mod tests {
 										.unwrap()
 										.into(),
 								),
-								assets: crate::Funds(vec![(
+								assets: XcFundsFilter(vec![(
 									pica_on_osmosis,
 									1_000_000_000u128.into(),
 								)]),
@@ -499,22 +499,23 @@ mod tests {
 							instructions: [
 								XcInstruction::Exchange {
 									id: pica_osmo_on_osmosis.into(),
-									give: crate::Funds(vec![(
+									give: XcFundsFilter(vec![(
 										pica_on_osmosis,
 										1_000_000_000u128.into(),
 									)]),
-									want: crate::Funds(vec![(
-										osmo_on_osmosis,
-										1_000u128.into(),
-									)]),
-								}, 
-								XcInstruction::Spawn 
-								{ 
-									network: (),
-									salt: (), 
-									assets: (), 
-									program: () 
-								},								
+									want: XcFundsFilter(vec![(osmo_on_osmosis, 1_000u128.into())]),
+								},
+								XcInstruction::Spawn {
+									network: 2.into(),
+									salt: b"spawn_with_asset".to_vec(),
+									assets: vec![(
+										osmo_on_picasso,
+										XcAmountFilter::from(((100, 100))),
+									)
+										.into()]
+									.into(),
+									program: XcProgram { tag: todo!(), instructions: todo!() },
+								},
 							]
 							.into(),
 						},

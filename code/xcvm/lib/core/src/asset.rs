@@ -109,8 +109,6 @@ impl From<u128> for Balance {
 	}
 }
 
-pub const MAX_PARTS: u128 = 1000000000000000000;
-
 #[cfg_attr(feature = "std", derive(schemars::JsonSchema))]
 #[derive(
 	Clone, PartialEq, Eq, PartialOrd, Ord, Debug, Encode, Decode, TypeInfo, Serialize, Deserialize,
@@ -119,7 +117,7 @@ pub const MAX_PARTS: u128 = 1000000000000000000;
 /// See https://en.wikipedia.org/wiki/Linear_equation#Slope%E2%80%93intercept_form_or_Gradient-intercept_form
 pub struct Amount {
 	pub intercept: Displayed<u128>,
-	pub slope: Displayed<u128>,
+	pub slope: Displayed<u64>,
 }
 
 /// Arithmetic errors.
@@ -133,10 +131,16 @@ pub enum ArithmeticError {
 	DivisionByZero,
 }
 
-impl Amount {
-	pub const MAX_PARTS: u128 = 1000000000000000000;
+impl From<(u64,u64)> for Amount {
+    fn from(value: (u64,u64)) -> Self {
+       Self::new(0, (value.0 as u128 * Self::MAX_PARTS as u128 / value.1 as u128) as u64)
+    }
+}
 
-	pub const fn new(intercept: u128, slope: u128) -> Self {
+impl Amount {
+	pub const MAX_PARTS: u64 = 1_000_000_000_000_000_000;
+
+	pub const fn new(intercept: u128, slope: u64) -> Self {
 		Self { intercept: Displayed(intercept), slope: Displayed(slope) }
 	}
 
@@ -145,8 +149,8 @@ impl Amount {
 		Self { intercept: Displayed(value), slope: Displayed(0) }
 	}
 
-	/// A ratio amount, expressed in u128 parts (x / MAX_PARTS)
-	pub const fn ratio(parts: u128) -> Self {
+	/// A ratio amount, expressed in parts (x / MAX_PARTS)
+	pub const fn ratio(parts: u64) -> Self {
 		Self { intercept: Displayed(0), slope: Displayed(parts) }
 	}
 
