@@ -478,9 +478,12 @@ mod tests {
 	}
 
 	#[test]
-	fn spawn_with_asset_and_transfer_swap_transfer_back() {
+	fn spawn_with_asset_swap_and_transfer_back() {
 		let pica_on_centauri = generate_asset_id(2.into(), 0, 1);
 		let pica_on_osmosis = generate_asset_id(3.into(), 0, 1);
+		let osmo_on_osmosis = generate_asset_id(3.into(), 0, 2);
+		let osmo_on_picasso = generate_asset_id(2.into(), 0, 2);
+		let pica_osmo_on_osmosis = generate_asset_id(3.into(), 100, 1);
 
 		let program = ExecuteMsg::ExecuteProgram {
 			execute_program: ExecuteProgramMsg {
@@ -493,17 +496,27 @@ mod tests {
 						assets: vec![(pica_on_osmosis, 1_000_000_000u128)].into(),
 						program: XcProgram {
 							tag: b"spawn_with_asset".to_vec(),
-							instructions: [XcInstruction::Transfer {
-								to: crate::Destination::Account(
-									Binary::from_base64("AB9vNpqXOevUvR5+JDnlljDbHhw=")
-										.unwrap()
-										.into(),
-								),
-								assets: crate::Funds(vec![(
-									pica_on_osmosis,
-									1_000_000_000u128.into(),
-								)]),
-							}]
+							instructions: [
+								XcInstruction::Exchange { 
+									id: pica_osmo_on_osmosis.into(), 
+									give: (), 
+									want: () 
+								}
+								
+								
+							// 	XcInstruction::Transfer {
+							// 	to: crate::Destination::Account(
+							// 		Binary::from_base64("AB9vNpqXOevUvR5+JDnlljDbHhw=")
+							// 			.unwrap()
+							// 			.into(),
+							// 	),
+							// 	assets: crate::Funds(vec![(
+							// 		pica_on_osmosis,
+							// 		1_000_000_000u128.into(),
+							// 	)]),
+							// }
+							
+							]
 							.into(),
 						},
 					}]
