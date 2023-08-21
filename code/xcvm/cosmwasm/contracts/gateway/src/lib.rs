@@ -1,4 +1,4 @@
-#![cfg_attr(not(test), deny(clippy::disallowed_methods, clippy::disallowed_types,))]
+#![cfg_attr(not(test), deny(clippy::disallowed_methods, clippy::disallowed_types, unused_imports))]
 extern crate alloc;
 
 pub use xc_core::gateway as msg;
@@ -14,3 +14,5 @@ pub mod interpreter;
 mod network;
 mod prelude;
 pub mod state;
+
+use alloc::vec::Vec;

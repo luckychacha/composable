@@ -308,13 +308,17 @@ impl<T> From<Funds<T>> for Vec<(u128, T)> {
 	}
 }
 
+
+/// see `generate_network_prefixed_id`
+pub fn generate_asset_id(network_id: NetworkId, protocol_id: u32, nonce: u64) -> AssetId {
+	AssetId::from(generate_network_prefixed_id(network_id, protocol_id, nonce))
+}
+
 // `protocol_id` - namespace like thing, default is 0, but can be used for example other consensus
 // to create known ahead
 /// `nonce` - local consensus atomic number, usually increasing monotonic increment
-pub fn generate_asset_id(network_id: NetworkId, protocol_id: u32, nonce: u64) -> AssetId {
-	AssetId::from(
-		(u128::from(network_id.0) << 96) | (u128::from(protocol_id) << 64) | (u128::from(nonce)),
-	)
+pub fn generate_network_prefixed_id(network_id: NetworkId, protocol_id: u32, nonce: u64) -> u128 {
+	(u128::from(network_id.0) << 96) | (u128::from(protocol_id) << 64) | u128::from(nonce)
 }
 
 #[cfg(test)]
@@ -334,5 +338,8 @@ mod tests {
 		assert_eq!(atom, 158456325028528675187087900674.into());
 		let atom = generate_asset_id(3.into(), 0, 2);
 		assert_eq!(atom, 237684487542793012780631851010.into());
+		
+		let pica_atom_on_osmosis = generate_network_prefixed_id(3.into(), 100, 1);
+		assert_eq!(pica_atom_on_osmosis, 237684489387467420151587012609);
 	}
 }
