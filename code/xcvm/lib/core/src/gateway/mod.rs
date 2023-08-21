@@ -499,21 +499,19 @@ mod tests {
 							instructions: [
 								XcInstruction::Exchange {
 									id: pica_osmo_on_osmosis.into(),
-									give: XcFundsFilter(vec![(
+									give: XcFundsFilter::one(
 										pica_on_osmosis,
 										1_000_000_000u128.into(),
-									)]),
+									),
 									want: XcFundsFilter(vec![(osmo_on_osmosis, 1_000u128.into())]),
 								},
 								XcInstruction::Spawn {
 									network: 2.into(),
 									salt: b"spawn_with_asset".to_vec(),
-									assets: vec![(
+									assets: XcAmountFilter::one(
 										osmo_on_picasso,
-										XcAmountFilter::from(((100, 100))),
-									)
-										.into()]
-									.into(),
+										(100, 100),
+									),
 									program: XcProgram { tag: todo!(), instructions: todo!() },
 								},
 							]

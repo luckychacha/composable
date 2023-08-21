@@ -131,10 +131,10 @@ pub enum ArithmeticError {
 	DivisionByZero,
 }
 
-impl From<(u64,u64)> for Amount {
-    fn from(value: (u64,u64)) -> Self {
-       Self::new(0, (value.0 as u128 * Self::MAX_PARTS as u128 / value.1 as u128) as u64)
-    }
+impl From<(u64, u64)> for Amount {
+	fn from(value: (u64, u64)) -> Self {
+		Self::new(0, (value.0 as u128 * Self::MAX_PARTS as u128 / value.1 as u128) as u64)
+	}
 }
 
 impl Amount {
@@ -257,6 +257,12 @@ impl From<u128> for Amount {
 #[repr(transparent)]
 pub struct Funds<T = Balance>(pub Vec<(AssetId, T)>);
 
+impl<T> Funds<T> {
+	pub fn one<A: Into<T>>(id: AssetId, amount: A) -> Self {
+		Self(vec![(id, amount.into())])
+	}
+}
+
 impl<T> Default for Funds<T> {
 	fn default() -> Self {
 		Self(Vec::new())
@@ -312,7 +318,6 @@ impl<T> From<Funds<T>> for Vec<(u128, T)> {
 	}
 }
 
-
 /// see `generate_network_prefixed_id`
 pub fn generate_asset_id(network_id: NetworkId, protocol_id: u32, nonce: u64) -> AssetId {
 	AssetId::from(generate_network_prefixed_id(network_id, protocol_id, nonce))
@@ -342,7 +347,7 @@ mod tests {
 		assert_eq!(atom, 158456325028528675187087900674.into());
 		let atom = generate_asset_id(3.into(), 0, 2);
 		assert_eq!(atom, 237684487542793012780631851010.into());
-		
+
 		let pica_atom_on_osmosis = generate_network_prefixed_id(3.into(), 100, 1);
 		assert_eq!(pica_atom_on_osmosis, 237684489387467420151587012609);
 	}

@@ -14,5 +14,3 @@ pub mod interpreter;
 mod network;
 mod prelude;
 pub mod state;
-
-use alloc::vec::Vec;
