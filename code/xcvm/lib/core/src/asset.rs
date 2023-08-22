@@ -103,9 +103,15 @@ impl Balance {
 	}
 }
 
+impl From<(u64, u64)> for Balance {
+	fn from(value: (u64, u64)) -> Self {
+		Balance { amount: Amount::from(value), is_unit: false }
+	}
+}
+
 impl From<u128> for Balance {
 	fn from(value: u128) -> Self {
-		Balance { amount: Amount::absolute(value), is_unit: false }
+		Self { amount: Amount::absolute(value), is_unit: false }
 	}
 }
 

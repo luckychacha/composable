@@ -653,8 +653,8 @@ mod tests {
 	fn balance_to_amount_works() {
 		let balance = Balance {
 			balance_type: Some(balance::BalanceType::Ratio(Ratio {
-				nominator: 3u128.into(),
-				denominator: 5u128.into(),
+				nominator: 3u64.into(),
+				denominator: 5u64.into(),
 			})),
 		};
 		let xcvm_balance: crate::Balance = balance.try_into().unwrap();

@@ -389,10 +389,7 @@ mod tests {
 										.unwrap()
 										.into(),
 								),
-								assets: XcFundsFilter(vec![(
-									pica_on_osmosis,
-									1_000_000_000u128.into(),
-								)]),
+								assets: XcFundsFilter::one(pica_on_osmosis, 1_000_000_000u128),
 							}]
 							.into(),
 						},
@@ -482,7 +479,7 @@ mod tests {
 		let pica_on_centauri = generate_asset_id(2.into(), 0, 1);
 		let pica_on_osmosis = generate_asset_id(3.into(), 0, 1);
 		let osmo_on_osmosis = generate_asset_id(3.into(), 0, 2);
-		let osmo_on_picasso = generate_asset_id(2.into(), 0, 2);
+		let osmo_on_centauri = generate_asset_id(2.into(), 0, 2);
 		let pica_osmo_on_osmosis = generate_network_prefixed_id(3.into(), 100, 1);
 
 		let program = ExecuteMsg::ExecuteProgram {
@@ -499,20 +496,25 @@ mod tests {
 							instructions: [
 								XcInstruction::Exchange {
 									id: pica_osmo_on_osmosis.into(),
-									give: XcFundsFilter::one(
-										pica_on_osmosis,
-										1_000_000_000u128.into(),
-									),
-									want: XcFundsFilter(vec![(osmo_on_osmosis, 1_000u128.into())]),
+									give: XcFundsFilter::one(pica_on_osmosis, 1_000_000_000u128),
+									want: XcFundsFilter::one(osmo_on_osmosis, 1_000u128),
 								},
 								XcInstruction::Spawn {
 									network: 2.into(),
 									salt: b"spawn_with_asset".to_vec(),
-									assets: XcAmountFilter::one(
-										osmo_on_picasso,
-										(100, 100),
-									),
-									program: XcProgram { tag: todo!(), instructions: todo!() },
+									assets: XcFundsFilter::one(osmo_on_centauri, (100, 100)),
+									program: XcProgram {
+										tag: b"spawn_with_asset".to_vec(),
+										instructions: 
+										[XcInstruction::Transfer {
+											to: crate::Destination::Account(
+												Binary::from_base64("AB9vNpqXOevUvR5+JDnlljDbHhw=")
+													.unwrap()
+													.into(),
+											),
+											assets: XcFundsFilter::one(osmo_on_centauri, (100, 100)),
+										}].into(),
+									},
 								},
 							]
 							.into(),
