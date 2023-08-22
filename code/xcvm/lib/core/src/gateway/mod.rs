@@ -560,11 +560,9 @@ mod tests {
 												"tag": "737061776e5f776974685f6173736574",
 												"instructions": [
 													{
-														"transfer": {
-															"to": {
-																"account": "AB9vNpqXOevUvR5+JDnlljDbHhw="
-															},
-															"assets": [
+														"exchange": {
+															"id": "237684489387467420151587012609",
+															"give": [
 																[
 																	"237684487542793012780631851009",
 																	{
@@ -575,7 +573,61 @@ mod tests {
 																		"is_unit": false
 																	}
 																]
+															],
+															"want": [
+																[
+																	"237684487542793012780631851010",
+																	{
+																		"amount": {
+																			"intercept": "1000",
+																			"slope": "0"
+																		},
+																		"is_unit": false
+																	}
+																]
 															]
+														}
+													},
+													{
+														"spawn": {
+															"network": 2,
+															"salt": "737061776e5f776974685f6173736574",
+															"assets": [
+																[
+																	"158456325028528675187087900674",
+																	{
+																		"amount": {
+																			"intercept": "0",
+																			"slope": "1000000000000000000"
+																		},
+																		"is_unit": false
+																	}
+																]
+															],
+															"program": {
+																"tag": "737061776e5f776974685f6173736574",
+																"instructions": [
+																	{
+																		"transfer": {
+																			"to": {
+																				"account": "AB9vNpqXOevUvR5+JDnlljDbHhw="
+																			},
+																			"assets": [
+																				[
+																					"158456325028528675187087900674",
+																					{
+																						"amount": {
+																							"intercept": "0",
+																							"slope": "1000000000000000000"
+																						},
+																						"is_unit": false
+																					}
+																				]
+																			]
+																		}
+																	}
+																]
+															}
 														}
 													}
 												]
