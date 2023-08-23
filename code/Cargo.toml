@@ -114,11 +114,11 @@ orml-xcm-support = { git = "https://github.com/open-web3-stack/open-runtime-modu
 orml-xtokens = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "a0751540591c88ccc2d4029464de887933727183", default-features = false }
 orml-tokens = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "a0751540591c88ccc2d4029464de887933727183", default-features = false }
 
-ibc = { git = "https://github.com/ComposableFi/centauri", rev = "fb6a23d16fe312f1cd2d38505389c049b446149a", default-features = false }
-ibc-rpc = { git = "https://github.com/ComposableFi/centauri", rev = "fb6a23d16fe312f1cd2d38505389c049b446149a", default-features = false }
-ibc-primitives = { git = "https://github.com/ComposableFi/centauri", rev = "fb6a23d16fe312f1cd2d38505389c049b446149a", default-features = false }
-ibc-runtime-api = { git = "https://github.com/ComposableFi/centauri", rev = "fb6a23d16fe312f1cd2d38505389c049b446149a", default-features = false }
-pallet-ibc = { git = "https://github.com/ComposableFi/centauri", rev = "fb6a23d16fe312f1cd2d38505389c049b446149a", default-features = false }
+ibc = { git = "https://github.com/luckychacha/centauri", branch = "master", default-features = false }
+ibc-rpc = { git = "https://github.com/luckychacha/centauri", branch = "master", default-features = false }
+ibc-primitives = { git = "https://github.com/luckychacha/centauri", branch = "master", default-features = false }
+ibc-runtime-api = { git = "https://github.com/luckychacha/centauri", branch = "master", default-features = false }
+pallet-ibc = { git = "https://github.com/luckychacha/centauri", branch = "master", default-features = false }
 
 polkadot-node-core-pvf = { git = "https://github.com/paritytech/polkadot", branch = "release-v0.9.40", default-features = false }
 
@@ -143,7 +143,7 @@ indices = { package = "pallet-indices", git = "https://github.com/paritytech/sub
 
 beefy-gadget = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 beefy-gadget-rpc = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
-sp-beefy = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+sp-consensus-beefy = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 fork-tree = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 frame-benchmarking = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 benchmarking = { package = "frame-benchmarking", git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
@@ -501,7 +501,7 @@ thiserror = { version = "1.0.38", package = "thiserror-core", default-features =
 # pallet-vesting = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-allocator = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-authority-discovery = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
-sc-basic-authorship = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
+# sc-basic-authorship = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-block-builder = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-chain-spec = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-chain-spec-derive = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
