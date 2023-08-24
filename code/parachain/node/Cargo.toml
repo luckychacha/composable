@@ -49,7 +49,7 @@ frame-benchmarking-cli = { workspace = true }
 substrate-frame-rpc-system = { workspace = true }
 substrate-prometheus-endpoint = { workspace = true }
 
-sc-finality-grandpa = { workspace = true }
+sc-consensus-grandpa = { workspace = true }
 sc-basic-authorship = { workspace = true }
 sc-chain-spec = { workspace = true }
 sc-cli = { workspace = true }

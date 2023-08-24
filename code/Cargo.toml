@@ -76,7 +76,8 @@ rpath = false
 # ALWAYS DEPEND ON COMMIT of cumulus/substrate/polkadot/centauri (at least until they release stable version 1.0 and allow more flexibility in deps)
 # NON COMMITS DEPS WILL BE REVERTED
 #######################################
-grandpa = { package = "sc-finality-grandpa", git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40" }
+# grandpa = { package = "sc-finality-grandpa", git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40" }
+grandpa = { package = "sc-consensus-grandpa", git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40" }
 collator-selection = { package = "pallet-collator-selection", git = "https://github.com/paritytech/cumulus", branch = "polkadot-v0.9.40", default-features = false }
 cumulus-client-cli = { git = "https://github.com/paritytech/cumulus", branch = "polkadot-v0.9.40" }
 cumulus-client-collator = { git = "https://github.com/paritytech/cumulus", branch = "polkadot-v0.9.40" }
@@ -141,8 +142,11 @@ executive = { package = "frame-executive", git = "https://github.com/paritytech/
 indices = { package = "pallet-indices", git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 
 
-beefy-gadget = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
-beefy-gadget-rpc = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+# beefy-gadget = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+# beefy-gadget-rpc = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+sc-consensus-beefy = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+sc-consensus-beefy-rpc = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+
 sp-consensus-beefy = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 fork-tree = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 frame-benchmarking = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
@@ -248,8 +252,10 @@ sc-executor = { git = "https://github.com/paritytech/substrate", branch = "polka
 sc-executor-common = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 sc-executor-wasmi = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 sc-executor-wasmtime = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
-sc-finality-grandpa = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
-sc-finality-grandpa-rpc = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+# sc-finality-grandpa = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+sc-consensus-grandpa = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+# sc-finality-grandpa-rpc = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
+sc-consensus-grandpa-rpc = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 sc-informant = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 sc-keystore = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
 sc-network = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.40", default-features = false }
@@ -518,7 +524,7 @@ thiserror = { version = "1.0.38", package = "thiserror-core", default-features =
 # sc-executor-common = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-executor-wasmi = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-executor-wasmtime = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
-sc-finality-grandpa = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
+# sc-finality-grandpa = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-finality-grandpa-rpc = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-informant = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
 # sc-keystore = { git = "https://github.com/ComposableFi/substrate", rev = "c74d73bfe1e4f725b3f7d81c997ba9c940bf6005" }
